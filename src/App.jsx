@@ -9,7 +9,6 @@ import { tvShows } from "./shows/data";
 
 export default function App() {
   const [selectedShow, setSelectedShow] = useState(null);
-  const [selectedEpisode, setSelectedEpisode] = useState(null);
 
   return (
     <>
@@ -19,16 +18,13 @@ export default function App() {
           shows={tvShows}
           setSelectedShow={(show) => {
             setSelectedShow(show);
-            setSelectedEpisode(null);
           }}
         />
       </header>
       <main>
-        <ShowDetails
-          show={selectedShow}
-          selectedEpisode={selectedEpisode}
-          setSelectedEpisode={setSelectedEpisode}
-        />
+        {selectedShow && (
+          <ShowDetails key={selectedShow.name} show={selectedShow} />
+        )}
       </main>
     </>
   );
